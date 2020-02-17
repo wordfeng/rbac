@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.yaxin.authority.mapper.AccountMapper">
+
+    <resultMap type="com.feng.yaxin.authority.entity.Account" id="AccountMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="account" column="account" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="deleted" column="deleted" jdbcType="BIT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="lastModifiedTime" column="last_modified_time" jdbcType="TIMESTAMP"/>
+        <result property="createUserId" column="create_user_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="selectAccountByAccount" resultMap="AccountMap">
+        select
+          id, account, name, password, deleted, create_time, last_modified_time, create_user_id
+        from account
+        where account.account = #{account}
+    </select>
+
+    <!--分页查询-->
+    <select id="selectAllAccount" resultMap="AccountMap">
+        select
+          id, account, name, password, deleted, create_time, last_modified_time, create_user_id
+        from authority.account
+        limit #{pageNum}, #{size}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insertAccount" keyProperty="id" useGeneratedKeys="true">
+        insert into authority.account(account, name, password, create_time, create_user_id)
+        values (#{account}, #{name}, #{password},  #{createTime} , #{createUserId})
+    </insert>
+
+    <!--通过account修改密码-->
+    <update id="updatePasswordByAccount">
+        update authority.account
+        <set>
+            <if test="newPassword != ''">
+                password = #{newPassword},
+            </if>
+        </set>
+        where account = #{account}
+    </update>
+
+    <!--通过主键删除-->
+    <!--    <delete id="deleteById">-->
+    <!--        delete from authority.account where id = #{id}-->
+    <!--    </delete>-->
+    <update id="deleteById">
+        update account
+            set deleted=1
+        where id=#{id}
+    </update>
+
+
+    <!--通过account删除-->
+    <delete id="deleteAccountByAccount">
+        delete from authority.account where account = #{account}
+    </delete>
+</mapper>

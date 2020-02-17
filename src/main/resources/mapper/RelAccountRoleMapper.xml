@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.yaxin.authority.mapper.RelAccountRoleMapper">
+
+    <resultMap type="com.feng.yaxin.authority.entity.RelAccountRole" id="RelAccountRoleMap">
+        <result property="accountId" column="account_id" jdbcType="INTEGER"/>
+        <result property="roleId" column="role_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--给账户添加角色-->
+    <insert id="addRole">
+        insert into authority.rel_account_role(account_id, role_id)
+        values (#{accountId}, #{roleId})
+    </insert>
+
+
+    <!--删除角色-->
+    <delete id="deleteRole">
+        delete from authority.rel_account_role
+        where account_id = #{accountId}
+        <if test="roleId != null">
+            and role_id=#{roleId}
+        </if>
+    </delete>
+
+    <update id="update">
+        update authority.rel_account_role
+		set role_id = #{newRoleId}
+		where account_id=#{accountId} and role_id=#{roleId}
+    </update>
+
+    <!--查询某个账户拥有的角色-->
+    <select id="selectRoleByAccount" resultMap="com.feng.yaxin.authority.mapper.RoleMapper.RoleMap">
+        SELECT role.id,role.`name`,role.description
+        FROM (select id from account where account=#{account}) id
+	        LEFT JOIN rel_account_role ac ON id=ac.account_id
+	        LEFT JOIN role on ac.role_id=role.id
+    </select>
+
+    <!--查询某个账户id拥有的角色-->
+    <select id="selectRoleById" resultMap="com.feng.yaxin.authority.mapper.RoleMapper.RoleMap">
+        SELECT role.id,role.`name`,role.description
+             FROM (SELECT * FROM rel_account_role ar WHERE ar.account_id = #{id}) x
+        	 LEFT JOIN	role ON role.id =  x.role_id
+    </select>
+
+
+</mapper>

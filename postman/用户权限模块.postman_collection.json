@@ -1,0 +1,1365 @@
+{
+	"info": {
+		"_postman_id": "278d3716-71ac-4c1d-8f0e-1e98cbbce190",
+		"name": "用户权限模块",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "用户增删改查",
+			"item": [
+				{
+					"name": "创建账户",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a41fce85-e2df-4523-8c8a-f4b1eea6ea03",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/create?account=laowang&name=老王&password=123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"create"
+							],
+							"query": [
+								{
+									"key": "account",
+									"value": "laowang"
+								},
+								{
+									"key": "name",
+									"value": "老王"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询单个用户账户",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6746c343-9d3b-4922-9e48-437e4de55ec9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"laowang\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/query/laowang",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"query",
+								"laowang"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改账户",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2bcb6ed2-1e56-4ff3-8ff8-204d3fa53ad0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/modify?account=laowang&oldPassword=123456&password=654321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"modify"
+							],
+							"query": [
+								{
+									"key": "account",
+									"value": "laowang"
+								},
+								{
+									"key": "oldPassword",
+									"value": "123456"
+								},
+								{
+									"key": "password",
+									"value": "654321"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询单个用户账户 Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7b1e40fa-f86e-4acd-8047-93055e9b065e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"654321\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/query/laowang",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"query",
+								"laowang"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除账户",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e6a226d1-066d-4ae5-aba2-b4ce2830a776",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/delete/laowang",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"delete",
+								"laowang"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分页查询用户账户",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "faca6dde-318f-4c28-9b7e-8975243c3a8f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/query/3/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"query",
+								"3",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "角色查询增删改查",
+			"item": [
+				{
+					"name": "创建权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "13a369f6-e465-4f92-afc2-ed6eba10dc85",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/create?name=test-role&description=testxxxxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"create"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "test-role"
+								},
+								{
+									"key": "description",
+									"value": "testxxxxx"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询单个权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8aec3d72-f2a6-4454-9796-094eee54ae4e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"testxxxxx\");",
+									"});    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/query/test-role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"query",
+								"test-role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16a0fbee-b292-4753-9c00-995217818abb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/modify?name=test-role&description=修改成功！！！！",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"modify"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "test-role"
+								},
+								{
+									"key": "description",
+									"value": "修改成功！！！！"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2bb5dee7-cf7f-4f99-a8ff-c7c5dfbf1aa2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"修改成功\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/query/test-role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"query",
+								"test-role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2771c6e0-d4f4-4f45-a9a2-55b9f9e44c23",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/delete?name=test-role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "test-role"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分页查询权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "31f63eba-194c-47f0-bcfc-2d0bcf969b31",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/query/liuyifei",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"query",
+								"liuyifei"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "权限增删改查",
+			"item": [
+				{
+					"name": "查询单个权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8495e4a-523c-4dca-832b-81a7b20f2d7c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/permission/query/id?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"permission",
+								"query",
+								"id"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分页查询权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "436e350f-fd2f-4cf3-acab-03d7f1709a81",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/permission/query/2/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"permission",
+								"query",
+								"2",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "创建权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23dde94e-18b3-45bf-b954-a108ea9f1d0c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/permission/create?name=xxxxxx-admind&description=测试",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"permission",
+								"create"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "xxxxxx-admind"
+								},
+								{
+									"key": "description",
+									"value": "测试"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "626ea478-4ebc-461a-9ad1-ec1b4a83da80",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/permission/modify?name=xxxxxx-admind&description=dasdasd改了改了测试",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"permission",
+								"modify"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "xxxxxx-admind"
+								},
+								{
+									"key": "description",
+									"value": "dasdasd改了改了测试"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cec53e37-6268-4df4-99d1-b7c91086c56b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/permission/query/name?name=xxxxxx-admind",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"permission",
+								"query",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "xxxxxx-admind"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bfcbd9d9-13e1-4d89-9c15-90ef932e318a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/permission/delete/name?name=xxxxxx-admind",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"permission",
+								"delete",
+								"name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "xxxxxx-admind"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "用户-角色",
+			"item": [
+				{
+					"name": "添加角色",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/role/add?accountId=3&roleId=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"role",
+								"add"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "3"
+								},
+								{
+									"key": "roleId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询用户拥有的的角色",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3562530c-5590-4e54-9c84-1a6105ba0a82",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"学生\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/role/query/id/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"role",
+								"query",
+								"id",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除角色对应的权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cc9501a7-c6a4-4df6-9615-360609765857",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/role/delete/3/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"role",
+								"delete",
+								"3",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询用户拥有的的角色 Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6cf2c1f0-2a4a-4780-80a3-f670cd187808",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/role/query/id/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"role",
+								"query",
+								"id",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改用户对应的角色",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "942e3c1f-f907-443a-b2fa-20ad551c7185",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/role/update?accountId=1&roleId=1&newRoleId=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"role",
+								"update"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "1"
+								},
+								{
+									"key": "roleId",
+									"value": "1"
+								},
+								{
+									"key": "newRoleId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询修改是否完成",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3562530c-5590-4e54-9c84-1a6105ba0a82",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"权限管理员\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/role/query/id/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"role",
+								"query",
+								"id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改回去",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/role/update?accountId=1&roleId=3&newRoleId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"role",
+								"update"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "1"
+								},
+								{
+									"key": "roleId",
+									"value": "3"
+								},
+								{
+									"key": "newRoleId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "角色-权限",
+			"item": [
+				{
+					"name": "给角色添加权限",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/permission/add?roleId=2&permissionId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"permission",
+								"add"
+							],
+							"query": [
+								{
+									"key": "roleId",
+									"value": "2"
+								},
+								{
+									"key": "permissionId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询用户拥有的的角色",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d80b484-fc75-444e-95d1-9d1171d73370",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"账户删除权限\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/permission/query/id/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"permission",
+								"query",
+								"id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询用户拥有的的角色",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7525f1bb-7512-4017-91e7-f6cfc6ffebc0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"账户删除权限\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/permission/query/name/role-admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"permission",
+								"query",
+								"name",
+								"role-admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除角色对应的权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8debe7a9-3eed-4721-863e-d928c90fc5cd",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/permission/delete?roleId=2&permissionId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"permission",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "roleId",
+									"value": "2"
+								},
+								{
+									"key": "permissionId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改角色对应的权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7f4fb4-35f2-4fb3-818e-225f1bad064e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/permission/update?roleId=2&permissionId=3&newPermissionId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"permission",
+								"update"
+							],
+							"query": [
+								{
+									"key": "roleId",
+									"value": "2"
+								},
+								{
+									"key": "permissionId",
+									"value": "3"
+								},
+								{
+									"key": "newPermissionId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查看修改是否已完成",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d80b484-fc75-444e-95d1-9d1171d73370",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/permission/query/id/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"permission",
+								"query",
+								"id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "改回去",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d3342d40-2b19-4a0f-9560-a17b67d93fc8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/role/permission/update?roleId=2&permissionId=4&newPermissionId=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"role",
+								"permission",
+								"update"
+							],
+							"query": [
+								{
+									"key": "roleId",
+									"value": "2"
+								},
+								{
+									"key": "permissionId",
+									"value": "4"
+								},
+								{
+									"key": "newPermissionId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
