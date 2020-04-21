@@ -27,7 +27,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .enable(acceptSwagger)
-                .groupName("肖宇峰")
+                .groupName("慕华")
                 .select()
                 //扫描接口的方式
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestControllerMapping.class))
@@ -42,7 +42,7 @@ public class SwaggerConfig {
                 "Api Documentation",
                 "1.0",
                 "http://localhost:8080/api/account/query/10/1",
-                new Contact("肖宇峰", "", "aegon4targaryen@163.com"),
+                new Contact("慕华", "", "aegon4targaryen@163.com"),
                 "Apache 2.0",
                 "http://www.apache.org/licenses/LICENSE-2.0",
                 new ArrayList<>()
